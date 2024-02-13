@@ -66,7 +66,7 @@ class crudController extends Controller
         return response()->json([
             'status'=> true,
             'mass' => 'Data Delete Successfull',
-        ], 200 );
+        ]);
     }
     
 }
