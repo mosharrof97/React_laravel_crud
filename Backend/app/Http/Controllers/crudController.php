@@ -14,7 +14,7 @@ class crudController extends Controller
         return response()->json([
         'status'=>true,
         'data'=>$data,
-        ], 200);
+        ]);
    }
 
    public function create(){
@@ -40,7 +40,14 @@ class crudController extends Controller
 
    }
 
+public function edit($id){
 
+    $data=dataTable::where('id',$id)->get();
+    return response()->json([
+        'status'=>true,
+        'data'=>$data,
+    ]);
+}
     public function update(Request $request, $id){
 
         $request->validate([

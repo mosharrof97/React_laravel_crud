@@ -19,6 +19,24 @@ const List = () => {
   };
   console.log(datas.data);
 
+  const editData = async (id) => {
+    try {
+      await axios.put(`http://127.0.0.1:8000/api/edit/${id}`);
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting item: ", error);
+    }
+  };
+  // Delete Data
+  const dataDelete = async (id) => {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/api/delete/${id}`);
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting item: ", error);
+    }
+  };
+
   return (
     <div className="container">
       <div className="my-5">
@@ -47,12 +65,18 @@ const List = () => {
                     <a className="btn btn-primary" href="#">
                       View
                     </a>
-                    <a className="btn btn-success mx-1" href="#">
+                    <button
+                      className="btn btn-success mx-1"
+                      onClick={() => editData(data.id)}
+                    >
                       Edit
-                    </a>
-                    <a className="btn btn-danger" href="#">
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => dataDelete(data.id)}
+                    >
                       Delete
-                    </a>
+                    </button>
                   </td>
                 </tr>
               ))
