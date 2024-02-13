@@ -42,7 +42,7 @@ class crudController extends Controller
 
 public function edit($id){
 
-    $data=dataTable::where('id',$id)->get();
+    $data=dataTable::where('id',$id)->first();
     return response()->json([
         'status'=>true,
         'data'=>$data,

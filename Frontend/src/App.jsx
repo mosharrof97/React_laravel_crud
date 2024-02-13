@@ -10,7 +10,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Form />} />
         <Route path="list" element={<List />} />
-        <Route path="edit" element={<Edit />} />
+        <Route path="edit/:id" element={<Edit />} />
         <Route path="view" element={<View />} />
 
         {/* <Route path="*" element={<Missing />} /> */}

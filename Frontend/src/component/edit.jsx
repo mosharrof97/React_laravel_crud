@@ -1,7 +1,26 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Edit = () => {
+  const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      // eslint-disable-next-line no-undef
+      const response = await axios.get(`http://127.0.0.1:8000/api/edit/{id}`);
+      setDatas(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+  console.log(datas.data);
+
   return (
     <div className="container my-5">
       <div className="row justify-content-center">

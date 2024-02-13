@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/all',[crudController::class,'index']);
 Route::post('/create',[crudController::class,'store']);
-Route::get('/update/{id}',[crudController::class,'edit']);
+Route::get('/edit/{id}',[crudController::class,'edit']);
 Route::patch('/update/{id}',[crudController::class,'update']);
 Route::delete('/delete/{id}',[crudController::class,'delete']);
