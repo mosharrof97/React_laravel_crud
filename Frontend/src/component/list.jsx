@@ -17,7 +17,7 @@ const List = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/all");
-      setDatas(response.data);
+      setDatas(response.data.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -27,13 +27,13 @@ const List = () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/edit/${id}`);
 
-      setEdit(response.data);
+      setEdit(response.data.data);
+      console.log(response.data.data);
       fetchData();
     } catch (error) {
       console.error("Error deleting item: ", error);
     }
   };
-  console.log(edit.data.name);
 
   const FormSubmit = async (id) => {
     try {
@@ -75,7 +75,7 @@ const List = () => {
             </thead>
             <tbody>
               {datas.length > 0 ? (
-                datas.data.map((data) => (
+                datas.map((data) => (
                   <tr key={data.id}>
                     <th scope="row">{data.id}</th>
                     <td>{data.name}</td>
@@ -142,7 +142,7 @@ const List = () => {
                     <h2>CRUD Form</h2>
 
                     <div className="wow fadeInUp" data-wow-delay="0.2s">
-                      <form onSubmit={FormSubmit(edit.data.id)}>
+                      <form onSubmit={FormSubmit(edit.id)}>
                         <div className="row g-3">
                           <div className="col-md-12">
                             <div className="form-floating">
@@ -150,7 +150,7 @@ const List = () => {
                                 type="text"
                                 className="form-control"
                                 id="name"
-                                value={edit.data.name}
+                                value={edit.name}
                                 onChange={(e) => setName(e.target.value)}
                                 placeholder="Name"
                               />
@@ -163,7 +163,7 @@ const List = () => {
                                 type="number"
                                 className="form-control"
                                 id="number"
-                                value={edit.data.number}
+                                value={edit.number}
                                 onChange={(e) => setNumber(e.target.value)}
                                 placeholder="Number"
                               />
@@ -176,7 +176,7 @@ const List = () => {
                                 type="email"
                                 className="form-control"
                                 id="email"
-                                value={edit.data.email}
+                                value={edit.email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Email"
                               />
@@ -189,7 +189,7 @@ const List = () => {
                                 type="text"
                                 className="form-control"
                                 id="address"
-                                value={edit.data.address}
+                                value={edit.address}
                                 onChange={(e) => setAddress(e.target.value)}
                                 placeholder="Address"
                               />

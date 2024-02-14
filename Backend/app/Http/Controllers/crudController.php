@@ -36,7 +36,7 @@ class crudController extends Controller
             'status'=>true, 
             'data'=>$data,
             'mass' => 'Data Create Successfull',
-        ], 200);
+        ]);
 
    }
 
@@ -63,7 +63,7 @@ public function edit($id){
             'status'=> true,
             'data' => $data,
             'mass' => 'Data Update Successfull',
-        ], 200 );
+        ]);
     }
 
     public function delete($id){
