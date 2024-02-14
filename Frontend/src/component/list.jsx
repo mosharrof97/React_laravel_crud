@@ -5,10 +5,10 @@ import axios from "axios";
 const List = () => {
   const [datas, setDatas] = useState([]);
   const [edit, setEdit] = useState([]);
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
+  const [name1, setName] = useState("");
+  const [number1, setNumber] = useState("");
+  const [email1, setEmail] = useState("");
+  const [address1, setAddress] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -27,21 +27,27 @@ const List = () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/edit/${id}`);
 
-      setEdit(response.data.data);
+      const data = response.data.data;
+      setEdit(data);
+      setName(data.name);
+      setNumber(data.number);
+      setEmail(data.email);
+      setAddress(data.address);
+      // setEdit(response.data.data);
       console.log(response.data.data);
       fetchData();
     } catch (error) {
-      console.error("Error deleting item: ", error);
+      console.error("Error: ", error);
     }
   };
 
   const FormSubmit = async (id) => {
     try {
-      await axios.post(`http://127.0.0.1:8000/api/update/${id}`, {
-        name: name,
-        number: number,
-        email: email,
-        address: address,
+      await axios.put(`http://127.0.0.1:8000/api/update/${id}`, {
+        name: name1,
+        number: number1,
+        email: email1,
+        address: address1,
       });
     } catch (error) {
       console.error("Error:", error);
@@ -150,7 +156,7 @@ const List = () => {
                                 type="text"
                                 className="form-control"
                                 id="name"
-                                value={edit.name}
+                                value={name1}
                                 onChange={(e) => setName(e.target.value)}
                                 placeholder="Name"
                               />
@@ -163,7 +169,7 @@ const List = () => {
                                 type="number"
                                 className="form-control"
                                 id="number"
-                                value={edit.number}
+                                value={number1}
                                 onChange={(e) => setNumber(e.target.value)}
                                 placeholder="Number"
                               />
@@ -176,7 +182,7 @@ const List = () => {
                                 type="email"
                                 className="form-control"
                                 id="email"
-                                value={edit.email}
+                                value={email1}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Email"
                               />
@@ -189,7 +195,7 @@ const List = () => {
                                 type="text"
                                 className="form-control"
                                 id="address"
-                                value={edit.address}
+                                value={address1}
                                 onChange={(e) => setAddress(e.target.value)}
                                 placeholder="Address"
                               />
